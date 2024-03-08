@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+<style>
+
+@font-face {
+	font-family: 'SansationLight';
+	src: url('./FontSansationLight/SansationLight.eot');
+	src: local('SansationLight'), url('./FontSansationLight/SansationLight.woff') format('woff'), url('./FontSansationLight/SansationLight.ttf') format('truetype');
+}
+* {box-sizing: border-box}
+
+/* Set height of body and the document to 100% */
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: 'SansationLight' !important;
+    background: rgb(22,22,22);
+}
+
+/* Style tab links */
+.tablink {
+	font-weight: bold;
+	font-family: 'SansationLight' !important;
+    background-color: #1111bb;
+    color: azure;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 12px 12px;
+    font-size: 17px;
+    width: 12.5%;
+}
+
+.tablink:hover {
+    background-color: #579;
+}
+
+/* Style the tab content (and add height:100% for full page content) */
+.tabcontent {
+    color: white;
+    padding: 100px 20px;
+    height: 100%;
+}
+
+#Consilieri {background-color: rgb(22,22,22);}
+#Partide {background-color: rgb(22,22,22);}
+#Comisii {background-color: rgb(22,22,22);}
+#Pontaje {background-color: rgb(22,22,22);}
+</style>
+</head>
+<body>
+
+  <a href="angajati"><button class="tablink" >Angajati</button></a>
+  <a href="comanda"><button class="tablink">Comenzi</button></a>
+  <a href="produse"><button class="tablink">Produse</button></a>
+  <a href="relatie"><button class="tablink">Relatie comanda-produs</button></a>
+  <a href="client"><button class="tablink">Clienti</button></a>
+  <a href="detaliiclient"><button class="tablink" style="background:rgb(70,130,180); color: white">Detalii_Client</button></a>
+  <a href="furnizor"><button class="tablink">Furnizor</button></a>
+
+  <div id="Employees" class="tabcontent">
+	<center>
+		  <br>
+  		<h1 id="h3">Creeaza Cont Client</h1>
+      <br><br><br>
+      <form class="was-validated" method="POST" action="/addDetClient">
+        <div class="row">
+			<!--<div class="col-md-6 mb-3">
+            <label for="validationServer01">Employee id</label>
+            <input name="employee_id" type="number" class="form-control is-valid" id="validationServer01" placeholder="ex. 22 " required>
+			</div>-->
+          <div class="col-md-6 mb-3">
+            <label for="validationServer01">adresa</label>
+            <input name="adresa" type="text" class="form-control is-valid" id="validationServer01" placeholder="ex. Iasi Iasi " required>
+          </div>
+		  <div class="col-md-6 mb-3">
+            <label for="validationServer01">data nasterii</label>
+            <input name="data_nasterii" type="text" class="form-control is-valid" id="validationServer01" placeholder="ex.12.02.1998" required>
+          </div>
+		  <div class="col-md-6 mb-3">
+            <label for="validationServer01">gen</label>
+            <input name="gen" type="text" class="form-control is-valid" id="validationServer01" placeholder="F/M" required>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="validationServer01">email</label>
+            <input name="email" type="text" class="form-control is-valid" id="validationServer01" placeholder="ex. aaa@bbb.com" required>
+          </div>
+
+<div class="row d-flex justify-content-center align-items-center">
+    <div class="col-md-6 mb-3">
+        <label for="validationServer01">id_client</label>
+        <select name="id_client" class="custom-select d-block my-3" style="width: 100%;">
+            <option value="">Alege id_client</option>
+            {% for com in Jobs %}
+                <option value={{com}}>{{com}}</option>
+            {% endfor %}
+        </select>
+    </div>
+</div>
+
+
+
+        <div class="btn-group d-flex justify-content-center align-items-center">
+    <a href="addDetClient">
+        <button type="button" class="btn btn-primary">Creeaza cont client</button>
+    </a>
+</div>
+      </form>
+
+  </center>
+
+  <script type="text/javascript">
+  var $dropdown1 = $("select[name='dropdown1']");
+  var $dropdown2 = $("select[name='dropdown2']");
+  var $dropdown3 = $("select[name='dropdown3']");
+  var disabled = [];
+
+  $dropdown1.change(function() {
+    if(disabled.length == 3){
+      $disabled=[];
+    }
+    $dropdown1.find('option').prop("disabled", false);
+    var selectedItem = $(this).val();
+    disabled.push(selectedItem);
+
+    for (var i = 0; i < disabled.length; ++i){
+        $dropdown2.find('option[value="' + selectedItem[i] + '"]').prop("disabled", true);
+        $dropdown3.find('option[value="' + selectedItem[i] + '"]').prop("disabled", true);
+    }
+  });
+
+  $dropdown2.change(function() {
+    if(disabled.length == 3){
+      $disabled=[];
+    }
+    $dropdown2.find('option').prop("disabled", false);
+    var selectedItem = $(this).val();
+    disabled.push(selectedItem);
+
+    for (var i = 0; i < disabled.length; ++i){
+        $dropdown1.find('option[value="' + selectedItem[i] + '"]').prop("disabled", true);
+        $dropdown3.find('option[value="' + selectedItem[i] + '"]').prop("disabled", true);
+    }
+  });
+
+  $dropdown3.change(function() {
+    if(disabled.length == 3){
+      $disabled=[];
+    }
+    $dropdown3.find('option').prop("disabled", false);
+    var selectedItem = $(this).val();
+    disabled.push(selectedItem);
+
+    for (var i = 0; i < disabled.length; ++i){
+        $dropdown1.find('option[value="' + selectedItem[i] + '"]').prop("disabled", true);
+        $dropdown2.find('option[value="' + selectedItem[i] + '"]').prop("disabled", true);
+    }
+  });
+  /*
+  $dropdown1.change(function() {
+    $dropdown2.children().show();
+    var selectedItem = $($dropdown1).val();
+    if (selectedItem != "")
+      $('select[name="dropdown2"] option[value="' + selectedItem + '"]').hide();
+  });
+
+  $dropdown2.change(function() {
+    $dropdown1.children().show();
+    var selectedItem = $($dropdown2).val();
+    if (selectedItem != "")
+      $('select[name="dropdown1"] option[value="' + selectedItem + '"]').hide();
+  });
+
+  $dropdown3.change(function() {
+    $dropdown1.children().show();
+    $dropdown2.children().show();
+    var selectedItem1 = $($dropdown1).val();
+    var selectedItem2 = $($dropdown2).val();
+    if (selectedItem1 != "" || selectedItem2 != ""){
+      $('select[name="dropdown3"] option[value="' + selectedItem1 + '"]').hide();
+      $('select[name="dropdown3"] option[value="' + selectedItem2 + '"]').hide();
+    }
+  });
+  */
+</script>
+
+</body>
+</html>
