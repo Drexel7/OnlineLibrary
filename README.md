@@ -60,7 +60,7 @@ Configure your Oracle database and update the connection settings in the applica
    ```sh
    python main.py
 
-## Front-end overwiew
+## Front-end overview
 
 - Employee table interface
 ![Employee](main/templates/1.png)
