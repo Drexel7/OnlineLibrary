@@ -3,11 +3,6 @@
 This project is a web application designed to manage the activities of a school supplies store, focusing on order management by customer. The project involves the analysis, design, and implementation of a database and its associated application.
 
 
-## Project Title
-Management of a School Supplies Store
-
-
-
 ## Requirements and Organization
 
 #### Customer Management
